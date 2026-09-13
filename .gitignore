@@ -1,0 +1,12 @@
+# Python virtual environment
+.venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Node modules
+node_modules/
+
+# sqlite database files
+*.sqlite3
+*.db
