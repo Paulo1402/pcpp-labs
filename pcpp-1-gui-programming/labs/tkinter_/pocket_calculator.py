@@ -1,31 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
-
-
-class Key:
-    def __init__(self, operator, calculator, label=None):
-        self._operator = operator
-        self._calculator = calculator
-
-        self.label = label if label else operator
-
-    def handle(self):
-        return self._calculator.append_on_display(self._operator)
-
-
-class ClearKey(Key):
-    def handle(self):
-        return self._calculator.clear_display()
-
-
-class ResultKey(Key):
-    def handle(self):
-        return self._calculator.result()
-
-
-class SwitchOperatorKey(Key):
-    def handle(self):
-        return self._calculator.switch_operator()
 
 
 class PocketCalculator:
@@ -43,6 +16,7 @@ class PocketCalculator:
 
     def __init__(self):
         self._window = tk.Tk()
+        self._window.title("Pocket Calculator")
 
         self._showing_default = True
 
@@ -142,7 +116,11 @@ class PocketCalculator:
 
     def _append_on_display(self, value):
         current = self._display_var.get()
-        new_value = current + value
+
+        if current == "0":
+            new_value = value
+        else:
+            new_value = current + value
 
         if current == self.ERROR_DISPLAY_VALUE:
             new_value = value
